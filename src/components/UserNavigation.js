@@ -1,13 +1,22 @@
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { auth } from "../firebase/config";
 
-const Navigation = () => {
-  const [active, setActive] = useState("/");
+const UserNavigation = () => {
+  const [active, setActive] = useState("/home");
   const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     setActive(location.pathname);
   }, [location]);
+
+  const logout = () => {
+    signOut(auth).then(() => {
+      navigate("/", { replace: true });
+    });
+  };
 
   return (
     <Navbar expand="md">
@@ -31,10 +40,16 @@ const Navigation = () => {
               //   onSelect={(selected) => setActive(selected)}
             >
               <Nav.Item>
-                <Nav.Link href="/">Login</Nav.Link>
+                <Nav.Link href="/home">Home</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/signup">SignUp</Nav.Link>
+                <Nav.Link href="/contacts">Contacts</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="/transactions">Transactions</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={logout}>Logout</Nav.Link>
               </Nav.Item>
             </Nav>
           </Offcanvas.Body>
@@ -44,4 +59,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default UserNavigation;
