@@ -29,18 +29,19 @@ const SignUp = () => {
 
     createUserWithEmailAndPassword(auth, email, values.password).then(
       async (res) => {
-        const user = await setDoc(doc(db, "users", res.id), {
+        const user = res.user;
+        const userDb = await setDoc(doc(db, "users", user.uid), {
           firstName: values.firstName,
           lastName: values.lastName,
           email: email,
         });
 
-        return user;
+        return userDb;
       }
     );
   };
   return (
-    <Container>
+    <Container className="pt-5">
       <Row>
         <Col className="text-center">
           <h3>Sign Up</h3>

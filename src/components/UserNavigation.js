@@ -1,8 +1,15 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
+import {
+  Container,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Offcanvas,
+} from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../firebase/config";
+import nearbylogo from "../images/nearbyrealtylogo.png";
 
 const UserNavigation = () => {
   const [active, setActive] = useState("/home");
@@ -21,7 +28,9 @@ const UserNavigation = () => {
   return (
     <Navbar expand="md">
       <Container>
-        <Navbar.Brand>Nearby Realty</Navbar.Brand>
+        <Navbar.Brand href="/home">
+          <img src={nearbylogo} width="150px" alt="Nearby Realty Logo" />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
         <Navbar.Offcanvas
           id="offcanvasNavbar-expand-md"
@@ -30,7 +39,7 @@ const UserNavigation = () => {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel-expand-md">
-              Nearby Realty
+              Menu
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
@@ -40,17 +49,32 @@ const UserNavigation = () => {
               //   onSelect={(selected) => setActive(selected)}
             >
               <Nav.Item>
-                <Nav.Link href="/home">Home</Nav.Link>
+                <Nav.Link href="/home">
+                  <i className="fa-solid fa-house"></i> Home
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/contacts">Contacts</Nav.Link>
+                <Nav.Link href="/contacts">
+                  <i className="fa-solid fa-address-book"></i> Contacts
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/transactions">Transactions</Nav.Link>
+                <Nav.Link href="/transactions">
+                  <i className="fa-solid fa-dollar-sign"></i> Transactions
+                </Nav.Link>
               </Nav.Item>
-              <Nav.Item>
-                <Nav.Link onClick={logout}>Logout</Nav.Link>
-              </Nav.Item>
+              <NavDropdown title={<i className="fa-solid fa-gear"></i>}>
+                <NavDropdown.Item>
+                  <Nav.Link onClick={logout}>
+                    Logout <i className="fa-solid fa-right-from-bracket"></i>
+                  </Nav.Link>
+                </NavDropdown.Item>
+              </NavDropdown>
+              {/* <Nav.Item>
+                <Nav.Link onClick={logout}>
+                  Logout <i className="fa-solid fa-right-from-bracket"></i>
+                </Nav.Link>
+              </Nav.Item> */}
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

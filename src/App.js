@@ -11,18 +11,22 @@ import Transactions from "./pages/Transactions";
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <NavMenu />
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route element={<PrivateRoutes />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/contacts" element={<Contacts />} />
-            <Route path="/transactions" element={<Transactions />} />
-          </Route>
-        </Routes>
-      </Router>
+      <div style={{ WebkitTapHighlightColor: "transparent" }}>
+        <Router>
+          <NavMenu />
+          <main>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route element={<PrivateRoutes />}>
+                <Route path="/home" element={<Home />} />
+                <Route path="/contacts" element={<Contacts />} />
+                <Route path="/transactions" element={<Transactions />} />
+              </Route>
+            </Routes>
+          </main>
+        </Router>
+      </div>
     </AuthProvider>
   );
 }

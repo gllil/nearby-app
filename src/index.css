@@ -15,3 +15,13 @@ code {
 .error {
   color: darkred;
 }
+
+@media screen and (display-mode: standalone) {
+  .navbar {
+    height: 88px !important;
+    position: fixed;
+  }
+  main {
+    margin-top: 66px;
+  }
+}

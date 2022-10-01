@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import nearbylogo from "../images/nearbyrealtylogo.png";
 
 const Navigation = () => {
   const [active, setActive] = useState("/");
@@ -12,7 +13,9 @@ const Navigation = () => {
   return (
     <Navbar expand="md">
       <Container>
-        <Navbar.Brand>Nearby Realty</Navbar.Brand>
+        <Navbar.Brand>
+          <img src={nearbylogo} width="150px" alt="Nearby Realty Logo" />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
         <Navbar.Offcanvas
           id="offcanvasNavbar-expand-md"

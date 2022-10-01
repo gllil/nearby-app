@@ -8,6 +8,7 @@ import { auth } from "../firebase/config";
 
 const Login = () => {
   const [pwError, setPwError] = useState(null);
+
   let validationSchema = object({
     email: string()
       .email("Invalid Email Address")
@@ -31,7 +32,7 @@ const Login = () => {
     setPwError(null);
   };
   return (
-    <Container>
+    <Container className="pt-5">
       <Row>
         <Col className="text-center">
           <h3>Login</h3>
